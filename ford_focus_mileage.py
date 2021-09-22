@@ -1,9 +1,11 @@
 import pandas as pd
-ford_mileage_file = "/home/karianjahi/ford_focus_mileage_records.txt"
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
+ford_mileage_file = "ford_focus_mileage_records.txt"
 with open(ford_mileage_file, "r") as f:
     data = f.read()
 
-data_lines = data.split("\n")[:-1]
+data_lines = data.split("\n")
 
 item = data_lines[0]
 
@@ -25,7 +27,13 @@ for item in data_lines:
     mileage.append(get_date_and_mileage(item)["mileage"])
 
 df = pd.DataFrame({"date": dates, "mileage": mileage})
-df.to_csv("ford_focus/mileage.csv", index=False)
+df.to_csv("mileage.csv", index=False)
+
+
+df = pd.read_csv("mileage.csv", index_col=0, parse_dates=True)
+df["diff"] = [i for i in df["mileage"].diff()]
+df[["diff"]].plot()
+plt.show()
 
     
     
