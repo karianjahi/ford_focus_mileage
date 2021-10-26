@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
-ford_mileage_file = "ford_focus_mileage_records.txt"
+ford_mileage_file = "mileage.csv"
 with open(ford_mileage_file, "r") as f:
     data = f.read()
 
